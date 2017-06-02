@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package pl.destino.moleculecounter.main;
 
 import java.util.HashMap;
@@ -7,17 +12,11 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author Patryk.Wierzchon
+ * @author Destino
  */
 public class MoleculeCounter {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        //Input formula
-        String input = "C6H12O6";
-
+    public Map<String, Integer> calculateMolecules(String input) {
         //Results collection
         HashMap<String, Integer> results = new HashMap();
 
@@ -45,22 +44,17 @@ public class MoleculeCounter {
                 while (finalMatcher.find()) {
                     String element = finalMatcher.group(1);
                     Integer count = Integer.parseInt(finalMatcher.group(2));
-                    if(results.containsKey(element)){
+                    if (results.containsKey(element)) {
                         Integer finalCount = Integer.sum(results.get(element), count);
                         results.put(element, finalCount);
-                    }else{
+                    } else {
                         results.put(element, count);
                     }
                 }
             }
 
         }
-
-        System.out.println("Result for: " + input);
-        for (Map.Entry<String, Integer> entry : results.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
-
+        return results;
     }
 
 }
