@@ -16,7 +16,7 @@ public class MoleculeCounter {
      */
     public static void main(String[] args) {
         //Input formula
-        String input = "CH6H12O6Cu2Pb12O";
+        String input = "C6H12O6";
 
         //Results collection
         HashMap<String, Integer> results = new HashMap();
@@ -30,7 +30,6 @@ public class MoleculeCounter {
         //Find elements with numbers
         while (matcher.find()) {
             String semiRes = matcher.group();
-            System.out.println(semiRes);
             Matcher finalMatcher = finalPattern.matcher(semiRes);
 
             //Check if single element
@@ -52,8 +51,6 @@ public class MoleculeCounter {
                     }else{
                         results.put(element, count);
                     }
-                    
-                    System.out.println(finalMatcher.group(0) + "| " + finalMatcher.group(1) + ": " + finalMatcher.group(2));
                 }
             }
 
