@@ -16,9 +16,10 @@ import java.util.regex.Pattern;
  */
 public class MoleculeCounter {
 
+    //Results collection
+    HashMap<String, Integer> results = new HashMap();
+
     public Map<String, Integer> calculateMolecules(String input) {
-        //Results collection
-        HashMap<String, Integer> results = new HashMap();
 
         //Create Matcher
         Pattern pattern = Pattern.compile("([A-Z]{1}[a-z]*[0-9]*)");
@@ -34,27 +35,27 @@ public class MoleculeCounter {
             //Check if single element
             if (semiRes.length() == 1) {
                 //add to results
-                //if there is already an element
-                if (results.containsKey(semiRes)) {
-                    results.put(semiRes, (results.get(semiRes) + 1));
-                } else {
-                    results.put(semiRes, 1);
-                }
+                insertElements(semiRes, 1);
             } else {
                 while (finalMatcher.find()) {
                     String element = finalMatcher.group(1);
                     Integer count = Integer.parseInt(finalMatcher.group(2));
-                    if (results.containsKey(element)) {
-                        Integer finalCount = Integer.sum(results.get(element), count);
-                        results.put(element, finalCount);
-                    } else {
-                        results.put(element, count);
-                    }
+                    insertElements(element, count);
+
                 }
             }
 
         }
         return results;
+    }
+
+    private void insertElements(String element, Integer count) {
+        if (results.containsKey(element)) {
+            Integer finalCount = Integer.sum(results.get(element), count);
+            results.put(element, finalCount);
+        } else {
+            results.put(element, count);
+        }
     }
 
 }
