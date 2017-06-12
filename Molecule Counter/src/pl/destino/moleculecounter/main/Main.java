@@ -18,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         //Input formula
-        String input = "C6H12O6";
+        String input = "C6H12O6(OH2)2";
         
         MoleculeCounter counter = new MoleculeCounter();
         Map<String, Integer> results = counter.calculateMolecules(input);

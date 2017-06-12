@@ -58,7 +58,7 @@ public class MoleculeCounter {
                     //add to results
                     insertElements(semiRes, multiplier);
                 } else {
-                    finalMatch(semiRes);
+                    finalMatch(semiRes,multiplier);
                 }
             }
 
